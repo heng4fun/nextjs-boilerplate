@@ -1,14 +1,26 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import {Analytics} from "@vercel/analytics/react";
+import { sql } from "@vercel/postgres";
 
-export default function Home() {
+
+export default async function Home() {
+  const { rows } = await sql`SELECT * FROM my_table`;
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
           KubeBlocks Rocks!!!
         </p>
+
+        <div>
+          {rows.map((row) => (
+              <div key={row.id}>
+                {row.id} - {row.quantity}
+              </div>
+          ))}
+        </div>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
