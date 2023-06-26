@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import {Analytics} from "@vercel/analytics/react";
 
 export default function Home() {
   return (
@@ -89,6 +90,8 @@ export default function Home() {
           </p>
         </a>
       </div>
+
+      <Analytics />
     </main>
   )
 }
